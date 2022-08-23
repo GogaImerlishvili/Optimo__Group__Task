@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import Logo from "../assets/Optimo_transparent.png";
 import { Link } from "react-router-dom";
-import Home from "./Home";
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
@@ -34,7 +33,11 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+              <Link
+                to="/employees"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
                 Employees
               </Link>
             </li>
@@ -56,9 +59,6 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <div className="hero-section">
-        <Home />
-      </div>
     </>
   );
 };
