@@ -1,0 +1,43 @@
+
+.wrapper{
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:  #8a2b06;
+    text-align: center;
+    position: sticky;
+    z-index: 999;
+   
+}
+
+    .copyright{
+        color:  black
+    }
+
+    h5{
+        color: white;
+        margin: 0.1rem;
+        font-weight: 400;
+        text-transform: none;
+        line-height: 1.25;
+        font-size: 18px;
+    }
+
+    .footerLinks{
+        display: flex;
+        list-style: none;
+        gap: 1em;
+       
+    }
+
+    .footerLinks > li > a{
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    .icons{
+    display: flex;
+        margin-left: 2%;
+        line-height: 1.80;
+    }
