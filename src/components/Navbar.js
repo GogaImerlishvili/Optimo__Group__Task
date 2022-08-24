@@ -42,12 +42,20 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+              <Link
+                to="/employee"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
                 Employee
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+              <Link
+                to="/feedback"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
                 Feedback
               </Link>
             </li>
