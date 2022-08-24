@@ -1,0 +1,19 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    margin-top: 2%;
+}
+
+.filter{
+    display: flex;
+    margin-top: 25%;
+}
+
+/* .filter-area{
+  display: flex;
+}
+.filter-area select{
+  width: 150px;
+  height: 30px;
+  text-align: center;
+} */
