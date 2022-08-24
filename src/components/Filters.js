@@ -1,4 +1,5 @@
 import React from "react";
+import "./Filters.css";
 
 const Filters = (props) => {
   const onFilterValueChanged = (event) => {
@@ -14,7 +15,11 @@ const Filters = (props) => {
   return (
     <div className="filter-area">
       <select name="isAvailable" onChange={onFilterValueChanged}>
-        {!props?.hideAll && <option value="all">All</option>}
+        {!props?.hideAll && (
+          <option className="option" value="all">
+            All
+          </option>
+        )}
         {props.data?.length > 0 && data()}
       </select>
     </div>
