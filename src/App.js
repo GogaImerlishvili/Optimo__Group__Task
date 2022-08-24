@@ -6,10 +6,13 @@ import Employees from "./components/Employees";
 function App() {
   return (
     <>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/employees" element={<Employees />} />
-      </Routes>
+      <Navbar />
+      <div className="container">
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/employees" element={<Employees />} />
+        </Routes>
+      </div>
     </>
   );
 }
