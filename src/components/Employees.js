@@ -2,37 +2,43 @@ import React, { useState, useEffect } from "react";
 import "./Employees.css";
 import EmployeesItem from "./EmployeesItem";
 import Card from "./UI/Card";
-import axios from "axios";
+import Filters from "./Filters";
 
 const Employees = () => {
   const [items, setItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
+  const [locations, setLocations] = useState();
+  const [positions, setPositions] = useState();
+
+  const myItems = filteredItems.length > 0 ? filteredItems : items;
+
+  const getLocations = async () => {
+    const response = await fetch(
+      "https://test-task-api-optimo.herokuapp.com/location"
+    );
+
+    const responseData = await response.clone().json();
+    setLocations(responseData);
+  };
+
+  const getJob = async () => {
+    const response = await fetch(
+      "https://test-task-api-optimo.herokuapp.com/job"
+    );
+
+    const responseData = await response.clone().json();
+    setPositions(responseData);
+  };
 
   useEffect(() => {
     const fetchEmployees = async () => {
       const response = await fetch(
         "https://test-task-api-optimo.herokuapp.com/employee"
-        // {
-        //   mode: "no-cors",
-        //   method: "GET",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   // body: JSON.stringify(),
-        // }
       );
-      // const res = await response.clone().json();
-
-      // console.log(res);
-
-      // if (!response.ok) {
-      //   throw new Error("Something went wrong");
-      // }
 
       const responseData = await response.clone().json();
-
-      console.log(responseData);
 
       const loadedEmployees = [];
 
@@ -48,15 +54,43 @@ const Employees = () => {
         });
       }
 
-      setItems(loadedEmployees);
+      const sorted = loadedEmployees.sort((a, b) => b.liked - a.liked);
+      setItems(sorted);
       setIsLoading(false);
     };
 
+    getLocations();
+    getJob();
     fetchEmployees().catch((error) => {
       setIsLoading(false);
       setHttpError(error.message);
     });
   }, []);
+
+  const filterByDescriptions = (desc) => {
+    if (desc) {
+      const filtered = items.filter((t) => t.job_id == desc);
+      setFilteredItems(filtered);
+    }
+  };
+
+  const filterByLocation = (loc) => {
+    if (loc) {
+      const filtered = items.filter((t) => t.location_id == loc);
+      setFilteredItems(filtered);
+    }
+  };
+
+  const filterByLike = (filter) => {
+    if (filter === "ascending") {
+      const filtered = items.sort((a, b) => b.liked - a.liked);
+      setFilteredItems([...filtered]);
+    }
+    if (filter === "descending") {
+      const filtered = items.sort((a, b) => a.liked - b.liked);
+      setFilteredItems([...filtered]);
+    }
+  };
 
   if (isLoading) {
     return (
@@ -74,7 +108,7 @@ const Employees = () => {
     );
   }
 
-  const employeesList = items.map((item) => (
+  const employeesList = myItems.map((item) => (
     <EmployeesItem
       key={item.id}
       id={item.id}
@@ -89,7 +123,24 @@ const Employees = () => {
   return (
     <div>
       <Card>
-        <ul>{employeesList}</ul>
+        <div className="grid-container">
+          {employeesList}
+          <div className="filter">
+            <Filters
+              filterValueSelected={filterByDescriptions}
+              data={positions}
+            />
+            <Filters filterValueSelected={filterByLocation} data={locations} />
+            <Filters
+              filterValueSelected={filterByLike}
+              data={[
+                { id: "ascending", name: "ascending" },
+                { id: "descending", name: "descending" },
+              ]}
+              hideAll={true}
+            />
+          </div>
+        </div>
       </Card>
     </div>
   );
