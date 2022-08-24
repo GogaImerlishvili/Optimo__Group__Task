@@ -2,11 +2,14 @@
     display: grid;
     grid-template-columns: auto auto auto auto;
     margin-top: 2%;
+    
 }
 
 .filter{
     display: flex;
     margin-top: 25%;
+    width: 150px;
+
 }
 
 /* .filter-area{
