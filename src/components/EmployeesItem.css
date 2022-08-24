@@ -1,0 +1,13 @@
+.employee-items{
+   display: flex;
+}
+
+.avatar{
+  display: flex;
+  justify-content: space-between;
+}
+
+.info{
+    display: block;
+    text-align: center;
+}
