@@ -2,9 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Employees from "./components/Employees";
-import Feedback from "./pages/Feedback";
+import Feedback from "./components/Feedback";
 import Employee from "./components/Employee";
-import Footer from "./components/layout/Footer";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/employees" element={<Employees />} />
-          <Route path="/employee" element={<Employee />} />
+          <Route path="/:userId/employee" element={<Employee />} />
           <Route path="/feedback" element={<Feedback />} />
         </Routes>
       </div>
