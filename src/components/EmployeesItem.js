@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import "./EmployeesItem.css";
 import { FcLike } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const EmployeesItem = (props) => {
   const [singleItem, setSingleItem] = useState([]);
-  const [click, setClick] = useState(false);
-
+  const { userId } = useParams();
   const singleEmployee = () => {
     const fetchSingleEmployee = async () => {
       const response = await fetch(
-        `https://test-task-api-optimo.herokuapp.com/employee/${props.id}`
+        `https://test-task-api-optimo.herokuapp.com/employee/${userId}`
       );
 
-      const responseData = await response.json();
+      const responseData = await response.clone().json();
       setSingleItem(responseData);
       console.log(responseData);
     };
@@ -35,7 +34,7 @@ const EmployeesItem = (props) => {
             <span>
               <FcLike /> {props.liked}
             </span>
-            <Link className="details-button" to={`/employee/${props.id}`}>
+            <Link className="details-button" to={`/${props.id}/employee`}>
               Details
             </Link>
           </div>

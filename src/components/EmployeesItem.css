@@ -23,5 +23,10 @@
   text-decoration: none;
   width: 150px;
   height: 40px;
-  background-color: green;
+  background-color: orangered;
+  align-items: center;
+  text-align: center;
+  border-radius: 12px;
+  color: white;
+  font-size: 22px;
 }
