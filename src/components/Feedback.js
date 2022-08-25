@@ -26,6 +26,14 @@ const Feedback = () => {
     console.log(blog);
   };
 
+  const didSubmitModalContent = (
+    <>
+      <div className="actions">
+        <p>Successfully sent the order!</p>
+      </div>
+    </>
+  );
+
   return (
     <div className="form-control">
       <form className="form" onSubmit={handleSubmit}>
@@ -72,6 +80,7 @@ const Feedback = () => {
               Submit...
             </button>
           )}
+          {isPending && didSubmitModalContent}
         </div>
       </form>
     </div>
