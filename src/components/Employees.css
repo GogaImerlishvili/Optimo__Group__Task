@@ -7,16 +7,8 @@
 
 .filter{
     display: flex;
-    margin-top: 25%;
+    margin-left: 35%;
+    margin-top: 2px;
     width: 150px;
 
 }
-
-/* .filter-area{
-  display: flex;
-}
-.filter-area select{
-  width: 150px;
-  height: 30px;
-  text-align: center;
-} */

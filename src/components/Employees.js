@@ -4,8 +4,6 @@ import "./Employees.css";
 import EmployeesItem from "./EmployeesItem";
 import Card from "./UI/Card";
 import Filters from "./Filters";
-import Employee from "./Employee";
-import Footer from "./Footer";
 
 const Employees = () => {
   const [items, setItems] = useState([]);
@@ -14,8 +12,6 @@ const Employees = () => {
   const [httpError, setHttpError] = useState();
   const [locations, setLocations] = useState();
   const [positions, setPositions] = useState();
-  const [singleItem, setSingleItem] = useState([]);
-  const { id } = useParams();
 
   const myItems = filteredItems.length > 0 ? filteredItems : items;
 
@@ -28,8 +24,6 @@ const Employees = () => {
     setLocations(responseData);
   };
 
-  // /employee/[employee_id]
-
   const getJob = async () => {
     const response = await fetch(
       "https://test-task-api-optimo.herokuapp.com/job"
@@ -38,16 +32,6 @@ const Employees = () => {
     const responseData = await response.clone().json();
     setPositions(responseData);
   };
-
-  // const fetchSingleEmployee = async () => {
-  //   const response = await fetch(
-  //     `https://test-task-api-optimo.herokuapp.com/employee[employee_id]`
-  //   );
-
-  //   const responseData = await response.clone().json();
-  //   setSingleItem(responseData);
-  //   console.log(responseData);
-  // };
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -78,20 +62,12 @@ const Employees = () => {
 
     getLocations();
     getJob();
-    // fetchSingleEmployee();
 
     fetchEmployees().catch((error) => {
       setIsLoading(false);
       setHttpError(error.message);
     });
   }, []);
-
-  // let filteredById = (personId) => {
-  //   if (personId) {
-  //     const filtered = items.filter((id) => id.id === personId);
-  //     setFilteredItems(filtered);
-  //   }
-  // };
 
   const filterByDescriptions = (desc) => {
     if (desc) {
@@ -144,30 +120,27 @@ const Employees = () => {
       avatar={item.avatar}
       job_id={item.job_id}
       location_id={item.location_id}
-      // filteredId={filteredById}
     />
   ));
   return (
     <div>
       <Card>
-        <div className="grid-container">
-          {employeesList}
-          <div className="filter">
-            <Filters
-              filterValueSelected={filterByDescriptions}
-              data={positions}
-            />
-            <Filters filterValueSelected={filterByLocation} data={locations} />
-            <Filters
-              filterValueSelected={filterByLike}
-              data={[
-                { id: "ascending", name: "ascending" },
-                { id: "descending", name: "descending" },
-              ]}
-              hideAll={true}
-            />
-          </div>
+        <div className="filter">
+          <Filters
+            filterValueSelected={filterByDescriptions}
+            data={positions}
+          />
+          <Filters filterValueSelected={filterByLocation} data={locations} />
+          <Filters
+            filterValueSelected={filterByLike}
+            data={[
+              { id: "ascending", name: "ascending" },
+              { id: "descending", name: "descending" },
+            ]}
+            hideAll={true}
+          />
         </div>
+        <div className="grid-container">{employeesList}</div>
       </Card>
     </div>
   );
