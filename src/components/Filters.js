@@ -14,7 +14,11 @@ const Filters = (props) => {
 
   return (
     <div className="filter-area">
-      <select name="isAvailable" onChange={onFilterValueChanged}>
+      <select
+        className="filter-option"
+        name="isAvailable"
+        onChange={onFilterValueChanged}
+      >
         {!props?.hideAll && (
           <option className="option" value="all">
             All

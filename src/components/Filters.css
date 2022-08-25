@@ -1,4 +1,12 @@
 .option{
-    height: 70px;
+  display: flex;
+}
+
+.filter-option{
+    display: flex;
     width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    
 }
