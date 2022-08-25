@@ -1,1 +1,16 @@
-    
+    .single-employee{
+        display: flex;
+        justify-content: center;
+        min-height: 80vh;
+        background-color: white;
+    }
+
+    .single-avatar{
+        margin-top: 8%;
+    }
+
+    .info{
+        display: block;
+        text-align: center;
+        
+    }
